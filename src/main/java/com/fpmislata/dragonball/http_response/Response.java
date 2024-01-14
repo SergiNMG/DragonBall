@@ -5,9 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 
-@Data
+@Getter
+@Setter
 @JsonPropertyOrder({"total_records", "page", "page_size", "total_pages", "next", "previous", "data"})
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonRootName("response")
@@ -37,7 +40,7 @@ public class Response {
         this.total_records = total_records;
         this.url = url;
         if (page != null){
-            buildPaginationMetaData(total_records, page_size, page, url);
+            buildPaginationMetaData(total_records, page, page_size, url);
         }
     }
 
