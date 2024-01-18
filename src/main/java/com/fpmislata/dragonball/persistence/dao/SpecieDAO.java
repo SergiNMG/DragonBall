@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface SpecieDAO extends JpaRepository<SpecieEntity, Integer> {
-    Optional<SpecieEntity> findByCharacter_Id(Integer characterId);
+    Optional<SpecieEntity> findByCharacters_Id(Integer characterId);
 }
