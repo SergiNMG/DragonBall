@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class CharacterRepositoryImpl implements CharacterRepository {
@@ -32,5 +33,9 @@ public class CharacterRepositoryImpl implements CharacterRepository {
             characterEntityList = characterDAO.findAll();
         }
         return CharacterMapper.mapper.toCharacterList(characterEntityList);
+    }
+
+    public Optional<Character> getById(Integer id){
+        return Optional.ofNullable(characterMapper.mapper.toCharacter(characterDAO.findById(id).get()));
     }
 }

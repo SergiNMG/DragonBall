@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CharacterServiceImpl implements CharacterService {
@@ -21,5 +22,10 @@ public class CharacterServiceImpl implements CharacterService {
     @Override
     public List<Character> getAll(Integer page, Integer page_size) {
         return characterRepository.getAll(page, page_size);
+    }
+
+    @Override
+    public Optional<Character> getById(Integer id) {
+        return  characterRepository.getById(id);
     }
 }
