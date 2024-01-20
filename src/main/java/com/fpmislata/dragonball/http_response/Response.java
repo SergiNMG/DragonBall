@@ -44,6 +44,10 @@ public class Response {
         }
     }
 
+    public Response(Object data){
+        this.data = data;
+    }
+
     private void buildPaginationMetaData(long total_records, int page, int page_size, String url){
         this.page = page;
         this.page_size = page_size;

@@ -14,8 +14,8 @@ public class TechniqueServiceImpl implements TechniqueService {
     @Autowired
     TechniqueRepository techniqueRepository;
 
-    @Override
-    public List<Technique> getByCharacter_Id(Integer characterId) {
-        return techniqueRepository.getByCharacters_Id(characterId);
-    }
+//    @Override
+//    public List<Technique> getByCharacter_Id(Integer characterId) {
+//        return techniqueRepository.getByCharacters_Id(characterId);
+//    }
 }

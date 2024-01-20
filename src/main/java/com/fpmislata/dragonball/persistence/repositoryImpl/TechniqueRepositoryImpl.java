@@ -7,9 +7,11 @@ import com.fpmislata.dragonball.persistence.dao.TechniqueDAO;
 import com.fpmislata.dragonball.persistence.model.CharacterEntity;
 import com.fpmislata.dragonball.persistence.model.TechniqueEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class TechniqueRepositoryImpl implements TechniqueRepository {
 
     @Autowired
@@ -17,8 +19,8 @@ public class TechniqueRepositoryImpl implements TechniqueRepository {
     @Autowired
     TechniqueMapper techniqueMapper;
 
-    public List<Technique> getByCharacter_Id(Integer characterId){
-        List<TechniqueEntity> techniqueEntityList = techniqueDAO.findByCharacters_Id(characterId);
-        return techniqueMapper.mapper.toTechniqueList(techniqueEntityList);
-    }
+//    public List<Technique> getByCharacters_Id(Integer characterId){
+//        List<TechniqueEntity> techniqueEntityList = techniqueDAO.findByCharacters_Id(characterId);
+//        return techniqueMapper.mapper.toTechniqueList(techniqueEntityList);
+//    }
 }

@@ -26,6 +26,7 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public Optional<Character> getById(Integer id) {
-        return  characterRepository.getById(id);
+        System.out.println(characterRepository.getById(id));
+        return characterRepository.getById(id);
     }
 }

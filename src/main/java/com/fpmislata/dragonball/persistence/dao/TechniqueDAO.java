@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TechniqueDAO extends JpaRepository<TechniqueEntity, Integer> {
-    List<TechniqueEntity> findByCharacters_Id(Integer characterId);
+    //List<TechniqueEntity> findByCharacters_Id(Integer characterId);
 }

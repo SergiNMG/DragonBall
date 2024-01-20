@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface SpecieRepository {
 
-    Optional<Specie> getById(Integer id);
-    Optional<Specie> getByCharacters_Id(Integer characterId);
+    //Optional<Specie> getById(Integer id);
+    //Optional<Specie> getByCharacters_Id(Integer characterId);
 }

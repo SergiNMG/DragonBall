@@ -1,5 +1,6 @@
 package com.fpmislata.dragonball.controller;
 
+import com.fpmislata.dragonball.controller.model.character.CharacterDetailWeb;
 import com.fpmislata.dragonball.controller.model.character.CharacterListWeb;
 import com.fpmislata.dragonball.domain.service.CharacterService;
 import com.fpmislata.dragonball.http_response.Response;
@@ -39,4 +40,17 @@ public class CharacterController {
 
         return new Response(characterListWeb, total_records, page, page_size, url);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{id}")
+    public CharacterDetailWeb getById(@PathVariable("id")Integer id){
+        return CharacterMapper.mapper.toCharacterDetailWeb(characterService.getById(id).orElseThrow());
+    }
+
+//    @ResponseStatus(HttpStatus.OK)
+//    @GetMapping("/{id}")
+//    public Response getById(@PathVariable("id")Integer id){
+//        CharacterDetailWeb characterDetailWeb = CharacterMapper.mapper.toCharacterDetailWeb(characterService.getById(id).orElseThrow());
+//        return new Response(characterDetailWeb);
+//    }
 }

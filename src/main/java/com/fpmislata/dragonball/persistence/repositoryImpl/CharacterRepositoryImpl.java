@@ -17,8 +17,6 @@ import java.util.Optional;
 public class CharacterRepositoryImpl implements CharacterRepository {
     @Autowired
     CharacterDAO characterDAO;
-    @Autowired
-    CharacterMapper characterMapper;
     @Override
     public long getTotalNumberOfRecords(){
         return characterDAO.count();
@@ -36,6 +34,7 @@ public class CharacterRepositoryImpl implements CharacterRepository {
     }
 
     public Optional<Character> getById(Integer id){
-        return Optional.ofNullable(characterMapper.mapper.toCharacter(characterDAO.findById(id).get()));
+        CharacterEntity characterEntity = characterDAO.findById(id).orElse(null);
+        return characterEntity == null ? Optional.empty() : Optional.of(CharacterMapper.mapper.toCharacterWithSpeciesAndTechniques(characterEntity));
     }
 }

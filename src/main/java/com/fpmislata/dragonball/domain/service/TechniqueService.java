@@ -7,5 +7,5 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 public interface TechniqueService {
-    List<Technique> getByCharacter_Id(Integer characterId);
+    //List<Technique> getByCharacter_Id(Integer characterId);
 }

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface TechniqueRepository {
 
-    List<Technique> getByCharacters_Id(Integer characterId);
+    //List<Technique> getByCharacters_Id(Integer characterId);
 }
