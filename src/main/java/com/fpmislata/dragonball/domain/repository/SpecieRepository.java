@@ -8,4 +8,6 @@ public interface SpecieRepository {
 
     //Optional<Specie> getById(Integer id);
     //Optional<Specie> getByCharacters_Id(Integer characterId);
+
+    Specie create(Specie specie);
 }

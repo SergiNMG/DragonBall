@@ -12,6 +12,7 @@ public interface SpecieMapper {
     SpecieMapper mapper = Mappers.getMapper(SpecieMapper.class);
 
     Specie toSpecie(SpecieEntity specieEntity);
-
+    Specie toSpecie(SpecieDetailWeb specieDetailWeb);
     SpecieDetailWeb toSpecieDetailWeb(Specie specie);
+    SpecieEntity toSpecieEntity(Specie specie);
 }

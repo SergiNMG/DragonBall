@@ -7,4 +7,5 @@ import java.util.Optional;
 public interface SpecieService {
 //    Optional<Specie> getById(Integer id);
 //    Optional<Specie> getByCharacter_Id(Integer characterId);
+    Specie create(Specie specie);
 }

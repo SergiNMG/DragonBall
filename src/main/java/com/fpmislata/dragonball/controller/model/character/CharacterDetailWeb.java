@@ -1,5 +1,6 @@
 package com.fpmislata.dragonball.controller.model.character;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fpmislata.dragonball.controller.model.specie.SpecieDetailWeb;
 import com.fpmislata.dragonball.controller.model.technique.TechniqueListWeb;
 import lombok.Data;
@@ -14,6 +15,8 @@ public class CharacterDetailWeb {
     private String name;
     private String role;
 
-    private SpecieDetailWeb specie;
-    private List<TechniqueListWeb> techniques;
+    @JsonProperty("specie")
+    private SpecieDetailWeb specieDetailWeb;
+    @JsonProperty("techniques")
+    private List<TechniqueListWeb> techniqueListWebList;
 }

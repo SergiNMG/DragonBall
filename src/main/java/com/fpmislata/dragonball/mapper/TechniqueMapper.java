@@ -14,10 +14,11 @@ public interface TechniqueMapper {
     TechniqueMapper mapper = Mappers.getMapper(TechniqueMapper.class);
 
     Technique toTechnique(TechniqueEntity techniqueEntity);
+    TechniqueEntity toTechniqueEntity(Technique technique);
     TechniqueListWeb toTechniqueListWeb(Technique technique);
 
     List<Technique> toTechniqueList(List<TechniqueEntity> techniqueEntityList);
-
     List<TechniqueListWeb> toTechniqueListWebList(List<Technique> techniqueList);
+    List<TechniqueEntity> toTechniqueEntityList(List<Technique> techniqueList);
 
 }

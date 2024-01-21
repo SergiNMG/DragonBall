@@ -13,6 +13,11 @@ public class SpecieServiceImpl implements SpecieService {
     @Autowired
     SpecieRepository specieRepository;
 
+    @Override
+    public Specie create(Specie specie) {
+        return specieRepository.create(specie);
+    }
+
 //    @Override
 //    public Optional<Specie> getById(Integer id) {
 //        return specieRepository.getById(id);

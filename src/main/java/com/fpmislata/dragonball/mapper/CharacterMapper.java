@@ -37,8 +37,12 @@ public interface CharacterMapper {
     @Named("toCharacterWithSpeciesAndTechniques")
     Character toCharacterWithSpeciesAndTechniques(CharacterEntity characterEntity);
 
-    @Mapping(target = "specie", expression = "java(SpecieMapper.mapper.toSpecieDetailWeb(character.getSpecie()))")
-    @Mapping(target = "techniques", expression = "java(TechniqueMapper.mapper.toTechniqueListWebList(character.getTechniqueList()))")
+    @Mapping(target = "specieDetailWeb", expression = "java(SpecieMapper.mapper.toSpecieDetailWeb(character.getSpecie()))")
+    @Mapping(target = "techniqueListWebList", expression = "java(TechniqueMapper.mapper.toTechniqueListWebList(character.getTechniqueList()))")
     @IterableMapping(qualifiedByName = "toCharacterWithSpeciesAndTechniques")
     CharacterDetailWeb toCharacterDetailWeb(Character character);
+
+    @Mapping(target = "specieEntity", expression = "java(SpecieMapper.mapper.toSpecieEntity(character.getSpecie()))")
+    @Mapping(target = "techniqueEntityList", expression = "java(TechniqueMapper.mapper.toTechniqueEntityList(character.getTechniqueList()))")
+    CharacterEntity toCharacterEntityWithSpeciesAndTechniques(Character character);
 }
