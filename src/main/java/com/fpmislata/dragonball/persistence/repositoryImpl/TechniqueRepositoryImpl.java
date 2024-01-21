@@ -16,8 +16,11 @@ public class TechniqueRepositoryImpl implements TechniqueRepository {
 
     @Autowired
     TechniqueDAO techniqueDAO;
-    @Autowired
-    TechniqueMapper techniqueMapper;
+
+    public Technique create(Technique technique){
+        TechniqueEntity techniqueEntity = techniqueDAO.save(TechniqueMapper.mapper.toTechniqueEntity(technique));
+        return TechniqueMapper.mapper.toTechnique(techniqueEntity);
+    }
 
 //    public List<Technique> getByCharacters_Id(Integer characterId){
 //        List<TechniqueEntity> techniqueEntityList = techniqueDAO.findByCharacters_Id(characterId);

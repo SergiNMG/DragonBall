@@ -1,5 +1,6 @@
 package com.fpmislata.dragonball.mapper;
 
+import com.fpmislata.dragonball.controller.model.technique.TechniqueDetailWeb;
 import com.fpmislata.dragonball.controller.model.technique.TechniqueListWeb;
 import com.fpmislata.dragonball.domain.entity.Technique;
 import com.fpmislata.dragonball.persistence.model.TechniqueEntity;
@@ -20,5 +21,8 @@ public interface TechniqueMapper {
     List<Technique> toTechniqueList(List<TechniqueEntity> techniqueEntityList);
     List<TechniqueListWeb> toTechniqueListWebList(List<Technique> techniqueList);
     List<TechniqueEntity> toTechniqueEntityList(List<Technique> techniqueList);
+
+    Technique toTechnique(TechniqueDetailWeb techniqueDetailWeb);
+    TechniqueDetailWeb toTechniqueDetailWeb(Technique technique);
 
 }

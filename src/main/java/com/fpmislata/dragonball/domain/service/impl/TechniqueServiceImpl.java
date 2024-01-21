@@ -14,6 +14,10 @@ public class TechniqueServiceImpl implements TechniqueService {
     @Autowired
     TechniqueRepository techniqueRepository;
 
+    public Technique create(Technique technique){
+        return techniqueRepository.create(technique);
+    }
+
 //    @Override
 //    public List<Technique> getByCharacter_Id(Integer characterId) {
 //        return techniqueRepository.getByCharacters_Id(characterId);

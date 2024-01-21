@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface TechniqueService {
     //List<Technique> getByCharacter_Id(Integer characterId);
+    Technique create(Technique technique);
 }
