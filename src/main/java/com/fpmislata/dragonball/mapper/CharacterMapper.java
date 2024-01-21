@@ -1,5 +1,6 @@
 package com.fpmislata.dragonball.mapper;
 
+import com.fpmislata.dragonball.controller.model.character.CharacterCreateWeb;
 import com.fpmislata.dragonball.controller.model.character.CharacterDetailWeb;
 import com.fpmislata.dragonball.controller.model.character.CharacterListWeb;
 import com.fpmislata.dragonball.domain.entity.Character;
@@ -45,4 +46,7 @@ public interface CharacterMapper {
     @Mapping(target = "specieEntity", expression = "java(SpecieMapper.mapper.toSpecieEntity(character.getSpecie()))")
     @Mapping(target = "techniqueEntityList", expression = "java(TechniqueMapper.mapper.toTechniqueEntityList(character.getTechniqueList()))")
     CharacterEntity toCharacterEntityWithSpeciesAndTechniques(Character character);
+
+    CharacterEntity toCharacterEntity(Character character);
+    Character toCharacter(CharacterCreateWeb characterCreateWeb);
 }

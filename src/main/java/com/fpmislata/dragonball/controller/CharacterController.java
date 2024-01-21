@@ -1,7 +1,9 @@
 package com.fpmislata.dragonball.controller;
 
+import com.fpmislata.dragonball.controller.model.character.CharacterCreateWeb;
 import com.fpmislata.dragonball.controller.model.character.CharacterDetailWeb;
 import com.fpmislata.dragonball.controller.model.character.CharacterListWeb;
+import com.fpmislata.dragonball.domain.entity.Character;
 import com.fpmislata.dragonball.domain.service.CharacterService;
 import com.fpmislata.dragonball.http_response.Response;
 import com.fpmislata.dragonball.mapper.CharacterMapper;
@@ -53,4 +55,10 @@ public class CharacterController {
 //        CharacterDetailWeb characterDetailWeb = CharacterMapper.mapper.toCharacterDetailWeb(characterService.getById(id).orElseThrow());
 //        return new Response(characterDetailWeb);
 //    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public Character create(@RequestBody CharacterCreateWeb characterCreateWeb){
+        return characterService.create(CharacterMapper.mapper.toCharacter(characterCreateWeb));
+    }
 }

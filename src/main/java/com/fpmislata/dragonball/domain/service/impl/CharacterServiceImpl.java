@@ -29,4 +29,10 @@ public class CharacterServiceImpl implements CharacterService {
         System.out.println(characterRepository.getById(id));
         return characterRepository.getById(id);
     }
+
+    @Override
+    public Character create(Character character) {
+        return characterRepository.create(character);
+    }
+
 }

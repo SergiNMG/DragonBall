@@ -37,4 +37,9 @@ public class CharacterRepositoryImpl implements CharacterRepository {
         CharacterEntity characterEntity = characterDAO.findById(id).orElse(null);
         return characterEntity == null ? Optional.empty() : Optional.of(CharacterMapper.mapper.toCharacterWithSpeciesAndTechniques(characterEntity));
     }
+
+    public Character create(Character character){
+        CharacterEntity characterEntity = characterDAO.save(CharacterMapper.mapper.toCharacterEntity(character));
+        return CharacterMapper.mapper.toCharacterWithSpeciesAndTechniques(characterEntity);
+    }
 }

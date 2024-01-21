@@ -9,4 +9,5 @@ public interface CharacterService {
     long getTotalNumberOfRecords();
     List<Character> getAll(Integer page, Integer page_size);
     Optional<Character> getById(Integer id);
+    Character create(Character character);
 }
