@@ -5,8 +5,9 @@ import com.fpmislata.dragonball.domain.repository.TechniqueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TechniqueService {
-    //List<Technique> getByCharacter_Id(Integer characterId);
+    Optional<Technique> getById(Integer id);
     Technique create(Technique technique);
 }

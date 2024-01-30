@@ -10,12 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class TechniqueRepositoryImpl implements TechniqueRepository {
 
     @Autowired
     TechniqueDAO techniqueDAO;
+
+    public Optional<Technique> getById(Integer id){
+        TechniqueEntity techniqueEntity = techniqueDAO.findById(id).orElse(null);
+        return techniqueEntity == null ? Optional.empty() : Optional.ofNullable(TechniqueMapper.mapper.toTechnique(techniqueEntity));
+    }
 
     public Technique create(Technique technique){
         TechniqueEntity techniqueEntity = techniqueDAO.save(TechniqueMapper.mapper.toTechniqueEntity(technique));

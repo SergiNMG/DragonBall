@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,8 +39,17 @@ public class CharacterRepositoryImpl implements CharacterRepository {
         return characterEntity == null ? Optional.empty() : Optional.of(CharacterMapper.mapper.toCharacterWithSpeciesAndTechniques(characterEntity));
     }
 
-    public Character create(Character character){
-        CharacterEntity characterEntity = characterDAO.save(CharacterMapper.mapper.toCharacterEntity(character));
-        return CharacterMapper.mapper.toCharacterWithSpeciesAndTechniques(characterEntity);
+    //Hacer un CharacterEntity toCharacterEntity sin especie ni técnicas para insertar
+    // setear la especie y las técnicas del character traido en el character creado
+    public Character save(Character character){
+        System.out.println(character);
+        CharacterEntity newCharacterEntity = CharacterMapper.mapper.toCharacterEntityWithSpeciesAndTechniques(character);
+        //CharacterEntity newCharacterEntity = CharacterMapper.mapper.toCharacterEntity(character);
+
+        System.out.println(newCharacterEntity);
+        CharacterEntity savedCharacterEntity = characterDAO.save(CharacterMapper.mapper.toCharacterEntity(newCharacterEntity));
+        savedCharacterEntity.setTechniqueEntityList(newCharacterEntity.getTechniqueEntityList());
+
+        return CharacterMapper.mapper.toCharacterWithSpeciesAndTechniques(savedCharacterEntity);
     }
 }

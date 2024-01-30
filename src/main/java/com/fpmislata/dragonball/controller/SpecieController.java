@@ -17,9 +17,16 @@ public class SpecieController {
 
     //Empleo modelo SpecieDetailWeb porque tiene los atributos que necesito parar insertar
     //Devuelvo la Specie insertada
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{id}")
+    public SpecieDetailWeb getById(@PathVariable("id") Integer id){
+        return SpecieMapper.mapper.toSpecieDetailWeb(specieService.getById(id).orElseThrow());
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public Specie create(@RequestBody SpecieDetailWeb specieDetailWeb){
-        return specieService.create(SpecieMapper.mapper.toSpecie(specieDetailWeb));
+    public SpecieDetailWeb create(@RequestBody SpecieDetailWeb specieDetailWeb){
+        Specie newSpecie = specieService.create(SpecieMapper.mapper.toSpecie(specieDetailWeb));
+        return SpecieMapper.mapper.toSpecieDetailWeb(newSpecie);
     }
 }

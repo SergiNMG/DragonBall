@@ -1,7 +1,11 @@
 package com.fpmislata.dragonball.domain.service.impl;
 
 import com.fpmislata.dragonball.domain.entity.Character;
+import com.fpmislata.dragonball.domain.entity.Specie;
+import com.fpmislata.dragonball.domain.entity.Technique;
 import com.fpmislata.dragonball.domain.repository.CharacterRepository;
+import com.fpmislata.dragonball.domain.repository.SpecieRepository;
+import com.fpmislata.dragonball.domain.repository.TechniqueRepository;
 import com.fpmislata.dragonball.domain.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +17,12 @@ import java.util.Optional;
 public class CharacterServiceImpl implements CharacterService {
     @Autowired
     CharacterRepository characterRepository;
+
+    @Autowired
+    SpecieRepository specieRepository;
+
+    @Autowired
+    TechniqueRepository techniqueRepository;
 
     @Override
     public long getTotalNumberOfRecords() {
@@ -26,13 +36,24 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public Optional<Character> getById(Integer id) {
-        System.out.println(characterRepository.getById(id));
+        //System.out.println(characterRepository.getById(id));
         return characterRepository.getById(id);
     }
 
     @Override
-    public Character create(Character character) {
-        return characterRepository.create(character);
+    public Character create(Character character, Integer id_specie, List<Integer> id_techniques) {
+
+        Specie specie = specieRepository.getById(id_specie).orElseThrow();
+        List<Technique> techniqueList = id_techniques.stream()
+                .map(id_technique -> techniqueRepository.getById(id_technique)
+                        .orElseThrow())
+                .toList();
+
+        character.setSpecie(specie);
+        character.setTechniqueList(techniqueList);
+
+        System.out.println(character);
+        return characterRepository.save(character);
     }
 
 }

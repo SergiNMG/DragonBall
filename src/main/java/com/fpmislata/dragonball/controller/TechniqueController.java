@@ -13,9 +13,17 @@ import org.springframework.web.bind.annotation.*;
 public class TechniqueController {
     @Autowired
     TechniqueService techniqueService;
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{id}")
+    public TechniqueDetailWeb getById(@PathVariable("id") Integer id){
+        return TechniqueMapper.mapper.toTechniqueDetailWeb(techniqueService.getById(id).orElseThrow());
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public Technique create(@RequestBody TechniqueDetailWeb techniqueDetailWeb){
-        return techniqueService.create(TechniqueMapper.mapper.toTechnique(techniqueDetailWeb));
+    public TechniqueDetailWeb create(@RequestBody TechniqueDetailWeb techniqueDetailWeb){
+        Technique newTechnique = techniqueService.create(TechniqueMapper.mapper.toTechnique(techniqueDetailWeb));
+        return TechniqueMapper.mapper.toTechniqueDetailWeb(newTechnique);
     }
 }

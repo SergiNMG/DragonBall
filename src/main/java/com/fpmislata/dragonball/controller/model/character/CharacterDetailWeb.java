@@ -2,6 +2,7 @@ package com.fpmislata.dragonball.controller.model.character;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fpmislata.dragonball.controller.model.specie.SpecieDetailWeb;
+import com.fpmislata.dragonball.controller.model.technique.TechniqueDetailWeb;
 import com.fpmislata.dragonball.controller.model.technique.TechniqueListWeb;
 import lombok.Data;
 import lombok.NoArgsConstructor;

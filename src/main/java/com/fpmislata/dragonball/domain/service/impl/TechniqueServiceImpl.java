@@ -8,18 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TechniqueServiceImpl implements TechniqueService {
     @Autowired
     TechniqueRepository techniqueRepository;
-
+    public Optional<Technique> getById(Integer id) {
+        return  techniqueRepository.getById(id);
+    }
     public Technique create(Technique technique){
         return techniqueRepository.create(technique);
     }
 
-//    @Override
-//    public List<Technique> getByCharacter_Id(Integer characterId) {
-//        return techniqueRepository.getByCharacters_Id(characterId);
-//    }
 }
