@@ -55,9 +55,8 @@ public interface CharacterMapper {
     @Mapping(target = "techniqueList", ignore = true)
     Character toCharacter(CharacterCreateWeb characterCreateWeb);
 
-    CharacterEntity toCharacterEntity(Character character);
 
-    @Mapping(target = "techniqueEntityList", ignore = true)
-    CharacterEntity toCharacterEntity(CharacterEntity characterEntity);
+    /*@Mapping(target = "techniqueEntityList", ignore = true)
+    CharacterEntity toCharacterEntity(CharacterEntity characterEntity);*/
 
 }

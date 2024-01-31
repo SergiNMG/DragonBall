@@ -19,8 +19,7 @@ public class TechniqueRepositoryImpl implements TechniqueRepository {
     TechniqueDAO techniqueDAO;
 
     public Optional<Technique> getById(Integer id){
-        TechniqueEntity techniqueEntity = techniqueDAO.findById(id).orElse(null);
-        return techniqueEntity == null ? Optional.empty() : Optional.ofNullable(TechniqueMapper.mapper.toTechnique(techniqueEntity));
+        return Optional.ofNullable(TechniqueMapper.mapper.toTechnique(techniqueDAO.findById(id).orElse(null)));
     }
 
     public Technique create(Technique technique){

@@ -44,6 +44,9 @@ public class CharacterServiceImpl implements CharacterService {
     public Character create(Character character, Integer id_specie, List<Integer> id_techniques) {
 
         Specie specie = specieRepository.getById(id_specie).orElseThrow();
+//        id_techniques.forEach(
+//                id -> character.setTechnique(techniqueRepository.getById(id).orElse(null))
+//        );
         List<Technique> techniqueList = id_techniques.stream()
                 .map(id_technique -> techniqueRepository.getById(id_technique)
                         .orElseThrow())
@@ -52,7 +55,7 @@ public class CharacterServiceImpl implements CharacterService {
         character.setSpecie(specie);
         character.setTechniqueList(techniqueList);
 
-        System.out.println(character);
+        //System.out.println(character);
         return characterRepository.save(character);
     }
 

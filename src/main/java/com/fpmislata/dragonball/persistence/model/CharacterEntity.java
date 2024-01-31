@@ -22,7 +22,7 @@ public class CharacterEntity {
     @JoinColumn(name = "id_specie")
     private SpecieEntity specieEntity;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "characters_techniques",
             joinColumns = @JoinColumn(name = "id_character"),

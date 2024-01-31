@@ -42,14 +42,14 @@ public class CharacterRepositoryImpl implements CharacterRepository {
     //Hacer un CharacterEntity toCharacterEntity sin especie ni técnicas para insertar
     // setear la especie y las técnicas del character traido en el character creado
     public Character save(Character character){
-        System.out.println(character);
-        CharacterEntity newCharacterEntity = CharacterMapper.mapper.toCharacterEntityWithSpeciesAndTechniques(character);
+        //System.out.println(character);
+        CharacterEntity characterEntity = CharacterMapper.mapper.toCharacterEntityWithSpeciesAndTechniques(character);
         //CharacterEntity newCharacterEntity = CharacterMapper.mapper.toCharacterEntity(character);
 
-        System.out.println(newCharacterEntity);
-        CharacterEntity savedCharacterEntity = characterDAO.save(CharacterMapper.mapper.toCharacterEntity(newCharacterEntity));
-        savedCharacterEntity.setTechniqueEntityList(newCharacterEntity.getTechniqueEntityList());
-
-        return CharacterMapper.mapper.toCharacterWithSpeciesAndTechniques(savedCharacterEntity);
+        //System.out.println(newCharacterEntity);
+        //CharacterEntity savedCharacterEntity = characterDAO.save(CharacterMapper.mapper.toCharacterEntity(newCharacterEntity));
+        //savedCharacterEntity.setTechniqueEntityList(newCharacterEntity.getTechniqueEntityList());
+        //characterDAO.save(characterEntity);
+        return CharacterMapper.mapper.toCharacterWithSpeciesAndTechniques(characterDAO.save(characterEntity));
     }
 }
