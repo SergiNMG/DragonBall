@@ -39,8 +39,7 @@ public class CharacterRepositoryImpl implements CharacterRepository {
         return characterEntity == null ? Optional.empty() : Optional.of(CharacterMapper.mapper.toCharacterWithSpeciesAndTechniques(characterEntity));
     }
 
-    //Hacer un CharacterEntity toCharacterEntity sin especie ni técnicas para insertar
-    // setear la especie y las técnicas del character traido en el character creado
+    @Transactional
     public Character save(Character character){
         //System.out.println(character);
         CharacterEntity characterEntity = CharacterMapper.mapper.toCharacterEntityWithSpeciesAndTechniques(character);
@@ -51,5 +50,9 @@ public class CharacterRepositoryImpl implements CharacterRepository {
         //savedCharacterEntity.setTechniqueEntityList(newCharacterEntity.getTechniqueEntityList());
         //characterDAO.save(characterEntity);
         return CharacterMapper.mapper.toCharacterWithSpeciesAndTechniques(characterDAO.save(characterEntity));
+    }
+
+    public void delete(Character character){
+        characterDAO.delete(CharacterMapper.mapper.toCharacterEntityWithSpeciesAndTechniques(character));
     }
 }

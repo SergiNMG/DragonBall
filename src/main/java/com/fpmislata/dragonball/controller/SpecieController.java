@@ -29,4 +29,12 @@ public class SpecieController {
         Specie newSpecie = specieService.create(SpecieMapper.mapper.toSpecie(specieDetailWeb));
         return SpecieMapper.mapper.toSpecieDetailWeb(newSpecie);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id}")
+    public SpecieDetailWeb delete(@PathVariable("id") Integer id){
+        SpecieDetailWeb specieDeleted = SpecieMapper.mapper.toSpecieDetailWeb(specieService.getById(id).orElseThrow());
+        specieService.delete(specieService.getById(id).orElseThrow());
+        return specieDeleted;
+    }
 }

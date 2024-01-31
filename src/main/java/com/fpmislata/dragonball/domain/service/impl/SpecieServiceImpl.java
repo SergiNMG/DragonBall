@@ -23,6 +23,11 @@ public class SpecieServiceImpl implements SpecieService {
         return specieRepository.getById(id);
     }
 
+    @Override
+    public void delete(Specie specie) {
+        specieRepository.delete(specie);
+    }
+
 //    @Override
 //    public Optional<Specie> getByCharacter_Id(Integer characterId) {
 //        return specieRepository.getByCharacters_Id(characterId);

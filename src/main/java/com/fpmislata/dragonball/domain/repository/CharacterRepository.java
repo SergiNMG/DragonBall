@@ -11,4 +11,5 @@ public interface CharacterRepository {
     List<Character> getAll(Integer page, Integer page_size);
     Optional<Character> getById(Integer id);
     Character save(Character character);
+    void delete(Character character);
 }

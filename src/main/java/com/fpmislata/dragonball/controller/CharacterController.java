@@ -35,10 +35,6 @@ public class CharacterController {
     @Autowired
     CharacterService characterService;
     @Autowired
-    SpecieService specieService;
-    @Autowired
-    TechniqueService techniqueService;
-    @Autowired
     CharacterMapper characterMapper;
 
     @ResponseStatus(HttpStatus.OK)
@@ -73,27 +69,16 @@ public class CharacterController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public CharacterDetailWeb create(@RequestBody CharacterCreateWeb characterCreateWeb){
-        //characterService.create(CharacterMapper.mapper.toCharacter(characterCreateWeb));
-        /*Specie specie = specieService.getById(characterCreateWeb.getId_specie()).orElseThrow();
-        SpecieDetailWeb specieDetailWeb = SpecieMapper.mapper.toSpecieDetailWeb(specie);
-
-
-        List<Technique> techniqueList = characterCreateWeb.getId_techniques().stream()
-                .map(id_technique -> techniqueService.getById(id_technique)
-                        .orElseThrow(() -> new RuntimeException("Técnica no encontrada: " + id_technique)))
-                .toList();
-        List<TechniqueListWeb> techniqueListWebList = TechniqueMapper.mapper.toTechniqueListWebList(techniqueList);
-
-        CharacterDetailWeb characterCreated = new CharacterDetailWeb();
-        characterCreated.setName(characterCreateWeb.getName());
-        characterCreated.setRole(characterCreateWeb.getRole());
-        characterCreated.setSpecieDetailWeb(specieDetailWeb);
-        characterCreated.setTechniqueListWebList(techniqueListWebList);
-
-        characterService.create(CharacterMapper.mapper.toCharacterSavingSpeciesAndTechniques(characterCreated));
-        return characterCreated;*/
         Character character = CharacterMapper.mapper.toCharacter(characterCreateWeb);
         Character newCharacter = characterService.create(character, characterCreateWeb.getId_specie(), characterCreateWeb.getId_techniques());
         return CharacterMapper.mapper.toCharacterDetailWeb(newCharacter);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id}")
+    public CharacterListWeb delete(@PathVariable("id") Integer id){
+        CharacterListWeb characterDeleted = CharacterMapper.mapper.toCharacterListWeb(characterService.getById(id).orElseThrow());
+        characterService.delete(characterService.getById(id).orElseThrow());
+        return characterDeleted;
     }
 }

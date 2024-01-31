@@ -59,4 +59,8 @@ public class CharacterServiceImpl implements CharacterService {
         return characterRepository.save(character);
     }
 
+    public void delete(Character character){
+        characterRepository.delete(character);
+    }
+
 }

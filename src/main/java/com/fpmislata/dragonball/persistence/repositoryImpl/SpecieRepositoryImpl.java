@@ -29,6 +29,10 @@ public class SpecieRepositoryImpl implements SpecieRepository {
         return specieEntity == null ? Optional.empty() : Optional.of(SpecieMapper.mapper.toSpecie(specieEntity));
     }
 
+    public void delete(Specie specie){
+        specieDAO.delete(SpecieMapper.mapper.toSpecieEntity(specie));
+    }
+
 //    public Optional<Specie> getById(Integer id){
 //        return Optional.ofNullable(specieMapper.mapper.toSpecie(specieDAO.findById(id).get()));
 //    }
