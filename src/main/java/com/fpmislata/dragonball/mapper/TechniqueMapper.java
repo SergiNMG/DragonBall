@@ -18,20 +18,18 @@ public interface TechniqueMapper {
 
 
     Technique toTechnique(TechniqueEntity techniqueEntity);
-
     TechniqueEntity toTechniqueEntity(Technique technique);
     TechniqueListWeb toTechniqueListWeb(Technique technique);
+    Technique toTechnique(TechniqueListWeb techniqueListWeb);
 
 
     List<Technique> toTechniqueList(List<TechniqueEntity> techniqueEntityList);
     List<TechniqueListWeb> toTechniqueListWebList(List<Technique> techniqueList);
-
-    //List<Technique> toTechniqueListSavingCharacter(List<TechniqueListWeb> techniqueListWebList);
     List<TechniqueEntity> toTechniqueEntityList(List<Technique> techniqueList);
+    List<Technique> toTechniqueUpdateList(List<TechniqueListWeb> techniqueListWebList);
 
 
     Technique toTechnique(TechniqueDetailWeb techniqueDetailWeb);
-
     TechniqueDetailWeb toTechniqueDetailWeb(Technique technique);
 
 }

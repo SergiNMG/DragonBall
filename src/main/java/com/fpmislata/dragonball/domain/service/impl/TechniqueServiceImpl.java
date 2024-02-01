@@ -15,10 +15,17 @@ public class TechniqueServiceImpl implements TechniqueService {
     @Autowired
     TechniqueRepository techniqueRepository;
     public Optional<Technique> getById(Integer id) {
-        return  techniqueRepository.getById(id);
+        return techniqueRepository.getById(id);
     }
     public Technique create(Technique technique){
-        return techniqueRepository.create(technique);
+        return techniqueRepository.save(technique);
     }
 
+    public Technique update(Technique techniqueUpdated){
+        Technique technique = techniqueRepository.getById(techniqueUpdated.getId()).orElseThrow();
+        technique.setName(techniqueUpdated.getName());
+        technique.setType(techniqueUpdated.getType());
+        technique.setEpisode(techniqueUpdated.getEpisode());
+        return techniqueRepository.save(technique);
+    }
 }

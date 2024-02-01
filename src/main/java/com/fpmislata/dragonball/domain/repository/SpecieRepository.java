@@ -5,10 +5,7 @@ import com.fpmislata.dragonball.domain.entity.Specie;
 import java.util.Optional;
 
 public interface SpecieRepository {
-
-    //Optional<Specie> getById(Integer id);
-    //Optional<Specie> getByCharacters_Id(Integer characterId);
-    Specie create(Specie specie);
     Optional<Specie> getById(Integer id);
+    Specie save(Specie specie);
     void delete(Specie specie);
 }

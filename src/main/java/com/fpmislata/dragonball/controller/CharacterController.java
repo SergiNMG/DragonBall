@@ -81,4 +81,12 @@ public class CharacterController {
         characterService.delete(characterService.getById(id).orElseThrow());
         return characterDeleted;
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id}")
+    public CharacterDetailWeb update(@PathVariable("id") Integer id, CharacterDetailWeb characterDetailWeb){
+        Character characterUpdated = CharacterMapper.mapper.toCharacterWithSpecieAndTechniques(characterDetailWeb);
+        characterUpdated.setId(id);
+        return CharacterMapper.mapper.toCharacterDetailWeb(characterService.update(characterUpdated));
+    }
 }

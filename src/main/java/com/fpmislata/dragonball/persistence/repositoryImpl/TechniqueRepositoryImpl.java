@@ -22,7 +22,7 @@ public class TechniqueRepositoryImpl implements TechniqueRepository {
         return Optional.ofNullable(TechniqueMapper.mapper.toTechnique(techniqueDAO.findById(id).orElse(null)));
     }
 
-    public Technique create(Technique technique){
+    public Technique save(Technique technique){
         TechniqueEntity techniqueEntity = techniqueDAO.save(TechniqueMapper.mapper.toTechniqueEntity(technique));
         return TechniqueMapper.mapper.toTechnique(techniqueEntity);
     }

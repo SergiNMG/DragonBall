@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface TechniqueService {
     Optional<Technique> getById(Integer id);
     Technique create(Technique technique);
+    Technique update(Technique techniqueUpdated);
 }

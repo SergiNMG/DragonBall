@@ -26,4 +26,13 @@ public class TechniqueController {
         Technique newTechnique = techniqueService.create(TechniqueMapper.mapper.toTechnique(techniqueDetailWeb));
         return TechniqueMapper.mapper.toTechniqueDetailWeb(newTechnique);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id}")
+    public TechniqueDetailWeb update(@PathVariable("id") Integer id, @RequestBody TechniqueDetailWeb techniqueDetailWeb){
+        Technique techniqueUpdated = TechniqueMapper.mapper.toTechnique(techniqueDetailWeb);
+        techniqueUpdated.setId(id);
+        return TechniqueMapper.mapper.toTechniqueDetailWeb(techniqueService.update(techniqueUpdated));
+        //return TechniqueMapper.mapper.toTechniqueDetailWeb(techniqueService.update(id));
+    }
 }

@@ -37,4 +37,12 @@ public class SpecieController {
         specieService.delete(specieService.getById(id).orElseThrow());
         return specieDeleted;
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id}")
+    public SpecieDetailWeb update(@PathVariable("id") Integer id, @RequestBody SpecieDetailWeb specieDetailWeb){
+        Specie specieUpdated = SpecieMapper.mapper.toSpecie(specieDetailWeb);
+        specieUpdated.setId(id);
+        return SpecieMapper.mapper.toSpecieDetailWeb(specieService.update(specieUpdated));
+    }
 }

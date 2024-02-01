@@ -18,17 +18,18 @@ public class SpecieRepositoryImpl implements SpecieRepository {
     SpecieDAO specieDAO;
 
     @Override
-    @Transactional
-    public Specie create(Specie specie) {
-       SpecieEntity specieEntity = specieDAO.save(SpecieMapper.mapper.toSpecieEntity(specie));
-       return SpecieMapper.mapper.toSpecie(specieEntity);
-    }
-
     public Optional<Specie> getById(Integer id){
         SpecieEntity specieEntity = specieDAO.findById(id).orElse(null);
         return specieEntity == null ? Optional.empty() : Optional.of(SpecieMapper.mapper.toSpecie(specieEntity));
     }
 
+    @Override
+    @Transactional
+    public Specie save(Specie specie) {
+        SpecieEntity specieEntity = specieDAO.save(SpecieMapper.mapper.toSpecieEntity(specie));
+        return SpecieMapper.mapper.toSpecie(specieEntity);
+    }
+    @Override
     public void delete(Specie specie){
         specieDAO.delete(SpecieMapper.mapper.toSpecieEntity(specie));
     }
