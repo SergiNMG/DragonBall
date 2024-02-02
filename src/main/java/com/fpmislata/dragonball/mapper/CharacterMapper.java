@@ -55,8 +55,8 @@ public interface CharacterMapper {
     @Mapping(target = "techniqueList", ignore = true)
     Character toCharacter(CharacterCreateWeb characterCreateWeb);
 
-    @Mapping(target = "specie", expression = "java(SpecieMapper.mapper.toSpecie(characterDetailWeb.getSpecieDetailWeb()))")
-    @Mapping(target = "techniqueList", expression = "java(TechniqueMapper.mapper.toTechniqueUpdateList(characterDetailWeb.getTechniqueListWebList()))")
-    Character toCharacterWithSpecieAndTechniques(CharacterDetailWeb characterDetailWeb);
+//    @Mapping(target = "specie", expression = "java(SpecieMapper.mapper.toSpecie(characterDetailWeb.getSpecieDetailWeb()))")
+//    @Mapping(target = "techniqueList", expression = "java(TechniqueMapper.mapper.toTechniqueUpdateList(characterDetailWeb.getTechniqueListWebList()))")
+//    Character toCharacterUpdated(CharacterDetailWeb characterDetailWeb);
 
 }

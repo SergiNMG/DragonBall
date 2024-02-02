@@ -59,16 +59,19 @@ public class CharacterServiceImpl implements CharacterService {
         return characterRepository.save(character);
     }
 
-    public Character update(Character characterUpdated){
-        Specie specieUpdated = specieRepository.save(characterUpdated.getSpecie());
-        List<Technique> techniqueUpdatedList = characterUpdated.getTechniqueList().stream()
-                .map(technique -> techniqueRepository.save(technique))
-                .toList();
+    public Character update(Character character, Integer id_specie, List<Integer> id_techniques){
+//        Specie specieUpdated = specieRepository.save(characterUpdated.getSpecie());
+//        List<Technique> techniqueUpdatedList = characterUpdated.getTechniqueList().stream()
+//                .map(technique -> techniqueRepository.save(technique))
+//                .toList();
+//
+//        characterUpdated.setSpecie(specieUpdated);
+//        characterUpdated.setTechniqueList(techniqueUpdatedList);
+        Specie specie = specieRepository.getById(id_specie).orElseThrow();
+        character.setSpecie(specie);
+        id_techniques.forEach(id_technique -> character.setTechnique(techniqueRepository.getById(id_technique).orElseThrow()));
 
-        characterUpdated.setSpecie(specieUpdated);
-        characterUpdated.setTechniqueList(techniqueUpdatedList);
-
-        return characterRepository.save(characterUpdated);
+        return characterRepository.save(character);
     }
 
     public void delete(Character character){

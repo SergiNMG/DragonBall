@@ -74,19 +74,23 @@ public class CharacterController {
         return CharacterMapper.mapper.toCharacterDetailWeb(newCharacter);
     }
 
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @PutMapping("/{id}")
+    public CharacterDetailWeb update(@PathVariable("id") Integer id, @RequestBody CharacterCreateWeb characterCreateWeb){
+        Character character = CharacterMapper.mapper.toCharacter(characterCreateWeb);
+        character.setId(id);
+        Character characterUpdated = characterService.update(character, characterCreateWeb.getId_specie(), characterCreateWeb.getId_techniques());
+        //Character characterUpdated = characterService.update(character, characterCreateWeb.getId_specie(), characterCreateWeb.getId_techniques());
+//        Specie specieUpdated = SpecieMapper.mapper.toSpecie(characterDetailWeb.getSpecieDetailWeb());
+//        List<TechniqueListWeb> techniqueListWebList = characterDetailWeb.getTechniqueListWebList();
+        return CharacterMapper.mapper.toCharacterDetailWeb(characterUpdated);
+    }
+
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id}")
     public CharacterListWeb delete(@PathVariable("id") Integer id){
         CharacterListWeb characterDeleted = CharacterMapper.mapper.toCharacterListWeb(characterService.getById(id).orElseThrow());
         characterService.delete(characterService.getById(id).orElseThrow());
         return characterDeleted;
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id}")
-    public CharacterDetailWeb update(@PathVariable("id") Integer id, CharacterDetailWeb characterDetailWeb){
-        Character characterUpdated = CharacterMapper.mapper.toCharacterWithSpecieAndTechniques(characterDetailWeb);
-        characterUpdated.setId(id);
-        return CharacterMapper.mapper.toCharacterDetailWeb(characterService.update(characterUpdated));
     }
 }
