@@ -7,6 +7,8 @@ import com.fpmislata.dragonball.domain.repository.CharacterRepository;
 import com.fpmislata.dragonball.domain.repository.SpecieRepository;
 import com.fpmislata.dragonball.domain.repository.TechniqueRepository;
 import com.fpmislata.dragonball.domain.service.CharacterService;
+import com.fpmislata.dragonball.domain.validations.ValidTechniqueList;
+import com.fpmislata.dragonball.domain.validations.ValidTechniqueListSize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,12 +43,12 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
+    @ValidTechniqueList
+    @ValidTechniqueListSize
     public Character create(Character character, Integer id_specie, List<Integer> id_techniques) {
 
         Specie specie = specieRepository.getById(id_specie).orElseThrow();
-//        id_techniques.forEach(
-//                id -> character.setTechnique(techniqueRepository.getById(id).orElse(null))
-//        );
+
         List<Technique> techniqueList = id_techniques.stream()
                 .map(id_technique -> techniqueRepository.getById(id_technique)
                         .orElseThrow())
@@ -59,6 +61,9 @@ public class CharacterServiceImpl implements CharacterService {
         return characterRepository.save(character);
     }
 
+    @Override
+    @ValidTechniqueList
+    @ValidTechniqueListSize
     public Character update(Character character, Integer id_specie, List<Integer> id_techniques){
 //        Specie specieUpdated = specieRepository.save(characterUpdated.getSpecie());
 //        List<Technique> techniqueUpdatedList = characterUpdated.getTechniqueList().stream()
