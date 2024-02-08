@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface SpecieMapper {
 
@@ -16,6 +18,6 @@ public interface SpecieMapper {
     Specie toSpecie(SpecieDetailWeb specieDetailWeb);
     SpecieDetailWeb toSpecieDetailWeb(Specie specie);
     SpecieEntity toSpecieEntity(Specie specie);
-
+    List<Specie> toSpecieList(List<SpecieEntity> specieEntityList);
 
 }

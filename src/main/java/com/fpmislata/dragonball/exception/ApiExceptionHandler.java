@@ -1,5 +1,6 @@
 package com.fpmislata.dragonball.exception;
 
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -51,5 +52,15 @@ public class ApiExceptionHandler {
     @ResponseBody
     public ErrorMessage badRequest(Exception exception){
         return new ErrorMessage("Invalid request body", HttpStatus.BAD_REQUEST.value());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler({
+            ConstraintViolationException.class,
+            jakarta.validation.ValidationException.class
+    })
+    @ResponseBody
+    public ErrorMessage ValidatonException(Exception exception){
+        return new ErrorMessage(exception.getMessage(), HttpStatus.BAD_REQUEST.value());
     }
 }

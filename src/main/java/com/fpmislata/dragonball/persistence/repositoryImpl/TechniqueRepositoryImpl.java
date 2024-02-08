@@ -18,13 +18,20 @@ public class TechniqueRepositoryImpl implements TechniqueRepository {
     @Autowired
     TechniqueDAO techniqueDAO;
 
+    @Override
     public Optional<Technique> getById(Integer id){
         return Optional.ofNullable(TechniqueMapper.mapper.toTechnique(techniqueDAO.findById(id).orElse(null)));
     }
 
+    @Override
     public Technique save(Technique technique){
         TechniqueEntity techniqueEntity = techniqueDAO.save(TechniqueMapper.mapper.toTechniqueEntity(technique));
         return TechniqueMapper.mapper.toTechnique(techniqueEntity);
+    }
+
+    @Override
+    public List<Technique> getByName(String name){
+        return TechniqueMapper.mapper.toTechniqueList(techniqueDAO.findByName(name));
     }
 
 //    public List<Technique> getByCharacters_Id(Integer characterId){

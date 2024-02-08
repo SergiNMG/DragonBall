@@ -1,6 +1,8 @@
 package com.fpmislata.dragonball.domain.entity;
 
+import com.fpmislata.dragonball.domain.validations.ValidTechniqueList;
 import com.fpmislata.dragonball.domain.validations.ValidTechniqueListSize;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,9 +12,12 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@ValidTechniqueListSize
+@ValidTechniqueList
 public class Character {
 
     private Integer id;
+    @NotBlank
     private String name;
     private String role;
     @NotNull

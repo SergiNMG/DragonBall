@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.fpmislata.dragonball.domain.validations.Validation.validate;
+
 @Service
 public class CharacterServiceImpl implements CharacterService {
     @Autowired
@@ -43,10 +45,7 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    @ValidTechniqueList
-    @ValidTechniqueListSize
     public Character create(Character character, Integer id_specie, List<Integer> id_techniques) {
-
         Specie specie = specieRepository.getById(id_specie).orElseThrow();
 
         List<Technique> techniqueList = id_techniques.stream()
@@ -57,13 +56,13 @@ public class CharacterServiceImpl implements CharacterService {
         character.setSpecie(specie);
         character.setTechniqueList(techniqueList);
 
+        validate(character);
+
         //System.out.println(character);
         return characterRepository.save(character);
     }
 
     @Override
-    @ValidTechniqueList
-    @ValidTechniqueListSize
     public Character update(Character character, Integer id_specie, List<Integer> id_techniques){
 //        Specie specieUpdated = specieRepository.save(characterUpdated.getSpecie());
 //        List<Technique> techniqueUpdatedList = characterUpdated.getTechniqueList().stream()
@@ -75,6 +74,8 @@ public class CharacterServiceImpl implements CharacterService {
         Specie specie = specieRepository.getById(id_specie).orElseThrow();
         character.setSpecie(specie);
         id_techniques.forEach(id_technique -> character.setTechnique(techniqueRepository.getById(id_technique).orElseThrow()));
+
+        validate(character);
 
         return characterRepository.save(character);
     }

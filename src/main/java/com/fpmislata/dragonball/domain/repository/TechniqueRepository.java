@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TechniqueRepository {
-
     Optional<Technique> getById(Integer id);
     Technique save(Technique technique);
-    //List<Technique> getByCharacters_Id(Integer characterId);
+    List<Technique> getByName(String name);
 }

@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -32,6 +33,11 @@ public class SpecieRepositoryImpl implements SpecieRepository {
     @Override
     public void delete(Specie specie){
         specieDAO.delete(SpecieMapper.mapper.toSpecieEntity(specie));
+    }
+
+    @Override
+    public List<Specie> getByName(String name){
+        return SpecieMapper.mapper.toSpecieList(specieDAO.findByName(name));
     }
 
 //    public Optional<Specie> getById(Integer id){
